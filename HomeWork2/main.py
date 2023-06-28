@@ -53,7 +53,6 @@ def task12():
     multiplication_result = int(
         input("Укажите число являющиеся произведением X и Y = ")
     )
-    n = 0
     for x in range(addition_result):
         for y in range(addition_result):
             if x * y == multiplication_result:
@@ -87,5 +86,4 @@ def task14():
 
 
 task14()
-print('Спасибо ')
-
+print("Спасибо ")
