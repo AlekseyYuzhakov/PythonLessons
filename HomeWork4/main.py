@@ -46,21 +46,15 @@ if task_number == 1 or task_number == 0:
 
 
 def find_best_bush_with_berries(some_list):
-    index_best_position = 0
     best_berries_count = 0
-    for i in range(len(some_list) - 1):
-        if i == 0:
-            if best_berries_count < (some_list[0] + some_list[-1] + some_list[1]):
-                best_berries_count = some_list[0] + some_list[-1] + some_list[1]
-                index_best_position = 0
-        if i == len(some_list):
-            if best_berries_count < (some_list[0] + some_list[-2] + some_list[-1]):
-                best_berries_count = some_list[0] + some_list[-2] + some_list[-1]
-                index_best_position = len(some_list)
-        if best_berries_count < (some_list[i] + some_list[i - 1] + some_list[i + 1]):
-            best_berries_count = some_list[i] + some_list[i - 1] + some_list[i + 1]
-            index_best_position = i
-    return index_best_position + 1
+    for i in range(len(some_list)):
+        if best_berries_count < (
+            some_list[i] + some_list[i - 1] + some_list[(i + 1) % len(some_list)]
+        ):
+            best_berries_count = (
+                some_list[i] + some_list[i - 1] + some_list[(i + 1) % len(some_list)]
+            )
+    return best_berries_count
 
 
 if task_number == 2 or task_number == 0:

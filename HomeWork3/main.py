@@ -110,7 +110,7 @@ if task_number == 3 or task_number == 0:
     symbol_points = 0
     for elem in user_word:
         if elem in english_dict:
-            symbol_points += english_dict[elem]    
-    print('Количество очков равно ',symbol_points)
+            symbol_points += english_dict[elem]
+    print("Количество очков равно ", symbol_points)
     input("Нажмите Enter что бы продолжить ")
     os.system("cls")
