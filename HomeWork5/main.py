@@ -21,6 +21,8 @@ def task26():
 
 
 def sum_a_b(first_number, second_number):
+    if first_number > second_number:
+        first_number, second_number = second_number, first_number
     if first_number == 0:
         return second_number
     return sum_a_b(first_number - 1, second_number + 1)
