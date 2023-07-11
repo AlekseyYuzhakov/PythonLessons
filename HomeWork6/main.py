@@ -32,7 +32,7 @@ def task30():
 def find_valuses_pos_in_range(some_list, min_wall, max_wall):
     new_list = []
     for i in range(len(some_list)):
-        if min_wall <= some_list[i] and some_list[i] <= max_wall:
+        if min_wall <= some_list[i] <= max_wall:
             new_list.append(i)
     return new_list
 
