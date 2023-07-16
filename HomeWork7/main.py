@@ -63,3 +63,11 @@ def task36():
 
 if __name__ == "__main__":
     task36()
+
+# def print_operation_table_2(operation, num_rows=6, num_columns=6):
+#     numbers = [[operation(i, j) for j in range(1, num_columns + 1)] for i in range(1, num_rows + 1)]
+#     for i in numbers:
+#         print(*[f'{j:2}' for j in i])
+
+# print_operation_table_2(lambda x, y: x * y)
+
