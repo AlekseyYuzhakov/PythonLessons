@@ -70,4 +70,3 @@ if __name__ == "__main__":
 #         print(*[f'{j:2}' for j in i])
 
 # print_operation_table_2(lambda x, y: x * y)
-

@@ -37,10 +37,10 @@ def delete_number(some_list):
     for elem in some_list:
         if ask_for_serch in elem:
             print(f"{elem.replace(';',' ')} Удалить запись? ")
-            if input("Yes or No ") == "y":
+            if str(input("Yes or No ")).lower in ["y", "yes", "yep", "ye"]:
                 some_list.pop(pos)
-                print('Запись удалена ')
-        pos+=1
+                print("Запись удалена ")
+        pos += 1
     return some_list
 
 
