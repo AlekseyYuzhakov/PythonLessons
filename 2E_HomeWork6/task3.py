@@ -5,15 +5,15 @@ board_list = []
 
 
 def is_attacking(q1, q2):
-    if q1[0] == q2[0] or q1[1] == q2[1] or abs(q2[0] - q1[0]) == abs(q2[1] - q1[1]):
+    if (q1[0] == q2[0] or q1[1] == q2[1] or abs(q2[0] - q1[0]) == abs(q2[1] - q1[1])):
         return False
     return True
 
 
 def check_queens(queens):
-    for q1 in range(len(queens)):
-        for q2 in range(q1, len(queens)):
-            if is_attacking(queens[q1], queens[q2]):
+    for q1 in range(len(queens) - 1):
+        for q2 in range(q1 + 1, len(queens)):
+            if is_attacking(queens[q1], queens[q2]) == False:
                 return False
     return True
 
@@ -40,4 +40,7 @@ def generate_boards():
     return board_list
 
 
-print(generate_boards())
+board_list = generate_boards()
+
+for board in board_list:
+    print(board)

@@ -12,11 +12,7 @@ def generate_board(size):
 def check_board(board):
     for i in range(len(board)):
         for j in range(i + 1, len(board)):
-            if (
-                board[i][0] == board[j][0]
-                or board[i][1] == board[j][1]
-                or abs(board[i][0] - board[j][0]) == abs(board[i][1] - board[j][1])
-            ):
+            if (board[i][0] == board[j][0] or board[i][1] == board[j][1] or abs(board[i][0] - board[j][0]) == abs(board[i][1] - board[j][1])):
                 return False
     return True
 
@@ -32,4 +28,5 @@ def find_succesfull_board(size, count):
 
 board_list = find_succesfull_board(8, 4)
 
-print(board_list)
+for board in board_list:
+    print(board)
