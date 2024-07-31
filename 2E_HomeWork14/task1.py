@@ -1,5 +1,36 @@
 class Rectangle:
     """
+    >>> r1 = Rectangle(5)
+    >>> r1.width == 5
+    True
+    >>> r2 = Rectangle(-2)
+    Traceback (most recent call last):
+      ...
+    NegativeValueError: Ширина должна быть положительной, а не -2
+    >>> r2 = Rectangle(3,4)
+    >>> r2.width == 3
+    True
+    >>> r2.height == 4
+    True
+    >>> r1.perimeter()
+    20
+    >>> r2.perimeter()
+    14
+    >>> r1.area()
+    25
+    >>> r2.area()
+    12
+    >>> r3 = r1 + r2
+    >>> r3.width 
+    8
+    >>> r3.height
+    6.0
+    >>> r3 = r1 - r2
+    >>> r3.width
+    2
+    >>> r3.height
+    2.0
+
     Класс, представляющий прямоугольник.
 
     Атрибуты:
@@ -21,12 +52,14 @@ class Rectangle:
     def __init__(self, width, height=None):
         if width <= 0:
             raise NegativeValueError(f"Ширина должна быть положительной, а не {width}")
-        if height <= 0:  # type: ignore
-            raise NegativeValueError(f"Высота должна быть положительной, а не {height}")
         self._width = width
         if height is None:
             self._height = width
         else:
+            if height <= 0:
+                raise NegativeValueError(
+                    f"Высота должна быть положительной, а не {height}"
+                )
             self._height = height
 
     def perimeter(self):
@@ -59,7 +92,7 @@ class Rectangle:
         """
         width = self._width + other._width
         perimeter = self.perimeter() + other.perimeter()
-        height = perimeter // 2 - width
+        height = perimeter / 2 - width
         return Rectangle(width, height)
 
     def __sub__(self, other):
@@ -76,7 +109,7 @@ class Rectangle:
             self, other = other, self
         width = abs(self.width - other.width)
         perimeter = self.perimeter() - other.perimeter()
-        height = perimeter // 2 - width
+        height = perimeter / 2 - width
         return Rectangle(width, height)
 
     def __lt__(self, other):
@@ -142,10 +175,10 @@ class Rectangle:
         if value <= 0:
             raise NegativeValueError(f"Ширина должна быть положительной, а не {value}")
         self._width = value
-
+    
     @property
     def height(self):
-        return self.height
+        return self._height
 
     @height.setter
     def height(self, value):
@@ -159,69 +192,7 @@ class NegativeValueError(Exception):
         super().__init__(msg)
 
 
-a = Rectangle(5, 5)
-a.width = -5
-print(a)
+if __name__ == "__main__":
+    import doctest
 
-"""
-    Добавьте в задачу Rectangle, которую писали ранее, исключение NegativeValueError, которое выбрасывается при некорректных значениях ширины и высоты, как при создании объекта, так и при установке их через сеттеры.
-    """
-
-"""
-class NegativeValueError(ValueError):
-    pass
-
-
-class Rectangle:
-    def __init__(self, width, height=None):
-        if width <= 0:
-            raise NegativeValueError(f'Ширина должна быть положительной, а не {width}')
-        self._width = width
-        if height is None:
-            self._height = width
-        else:
-            if height <= 0:
-                raise NegativeValueError(f'Высота должна быть положительной, а не {height}')
-            self._height = height
-
-    @property
-    def width(self):
-        return self._width
-
-    @width.setter
-    def width(self, value):
-        if value > 0:
-            self._width = value
-        else:
-            raise NegativeValueError(f'Ширина должна быть положительной, а не {value}')
-
-    @property
-    def height(self):
-        return self._height
-
-    @height.setter
-    def height(self, value):
-        if value > 0:
-            self._height = value
-        else:
-            raise NegativeValueError(f'Высота должна быть положительной, а не {value}')
-
-    def perimeter(self):
-        return 2 * (self._width + self._height)
-
-    def area(self):
-        return self._width * self._height
-
-    def __add__(self, other):
-        width = self._width + other._width
-        perimeter = self.perimeter() + other.perimeter()
-        height = perimeter / 2 - width
-        return Rectangle(width, height)
-
-    def __sub__(self, other):
-        if self.perimeter() < other.perimeter():
-            self, other = other, self
-        width = abs(self._width - other._width)
-        perimeter = self.perimeter() - other.perimeter()
-        height = perimeter / 2 - width
-        return Rectangle(width, height)"""
+    doctest.testmod()

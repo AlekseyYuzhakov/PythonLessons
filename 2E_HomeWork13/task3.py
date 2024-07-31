@@ -63,10 +63,10 @@ class Employee(Person):
         sum_digits = 0
         for digit in str(self._ID):
             sum_digits += int(digit)
-        return sum_digits
+        return sum_digits % 7
 
     def __str__(self) -> str:
-        return f"surname:{self._surname}, name:{self._name}, fathername:{self._fathername}, age:{self._age}, Level:{self.get_level()%7}"
+        return f"surname:{self._surname}, name:{self._name}, fathername:{self._fathername}, age:{self._age}, Level:{self.get_level()}"
 
 
 class InvalidNameError(Exception):
