@@ -19,7 +19,7 @@ class Station:
     loger = logging.getLogger(__name__)
     my_format = "{levelname:<2} - {asctime:<2} - {msg} -"
     logging.basicConfig(
-        filename="D://GBru//Учеба//Enter_python//Code//PythonLessons//2E_HomeWork15//station.log",
+        filename="D://GBru//Учеба//Enter_python//Code//PythonLessons//2E_HomeWork15//LOG.log",
         filemode="a",
         encoding="UTF-8",
         level="INFO",
@@ -84,7 +84,7 @@ class Work_site:
     loger = logging.getLogger(__name__)
     my_format = "{levelname:<2} - {asctime:<2} - {msg} -"
     logging.basicConfig(
-        filename="work_site.log",
+        filename="D://GBru//Учеба//Enter_python//Code//PythonLessons//2E_HomeWork15//LOG.log",
         filemode="a",
         encoding="UTF-8",
         level="INFO",
@@ -94,13 +94,35 @@ class Work_site:
 
     list_of_workers = []
 
-    def hire_worckers(self):
-        List_of_first_names = ["Ivan", "Alex", "Victor"]
-        List_of_last_names = ["Ivanov", "Volkov", "Serov"]
-        List_of_patronymic_names = ["Ivanovich", "Petrovich", "Kuzmich"]
+    def hire_worckers(self, value: int = 3):
+        List_of_first_names = [
+            "Ivan",
+            "Alex",
+            "Victor",
+            "Sergey",
+            "Nikolay",
+            "Vladimir",
+            "Anton",
+        ]
+        List_of_last_names = [
+            "Ivanov",
+            "Volkov",
+            "Serov",
+            "Petrov",
+            "Zhukov",
+            "Malishkin",
+        ]
+        List_of_patronymic_names = [
+            "Ivanovich",
+            "Petrovich",
+            "Kuzmich",
+            "Vladimirovich",
+            "Antonovich",
+            "Victorovich",
+        ]
 
         list_of_worckers = []
-        for i in range(len(List_of_last_names)):
+        for i in range(value):
             new_worcker = Employee(
                 rnd.choice(List_of_last_names),
                 rnd.choice(List_of_first_names),
@@ -125,9 +147,9 @@ class Work_site:
             self.loger.info(msg=f"worker:{worker}, assigned to station number {i+1}")
         return list_of_stations
 
-    def start_shift(self):
+    def start_shift(self, value: int = 3):
         self.loger.info(msg=f"shift started")
-        list_of_worckers = self.hire_worckers()
+        list_of_worckers = self.hire_worckers(value)
         list_of_stations = self.fill_stations(list_of_worckers)
         for i in range(len(list_of_stations)):
             list_of_stations[i].produce_partition(

@@ -1,3 +1,6 @@
+import logging
+
+
 class InvalidNameError(ValueError):
     def __init__(self, name):
         self.name = name
@@ -23,15 +26,34 @@ class InvalidIdError(ValueError):
 
 
 class Person:
+    loger = logging.getLogger(__name__)
+    my_format = "{levelname:<2} - {asctime:<2} - {msg} -"
+    logging.basicConfig(
+        filename="D://GBru//Учеба//Enter_python//Code//PythonLessons//2E_HomeWork15//LOG.log",
+        filemode="a",
+        encoding="UTF-8",
+        level="INFO",
+        style="{",
+        format=my_format,
+    )
+
     def __init__(self, last_name: str, first_name: str, patronymic: str, age: int):
         if not isinstance(last_name, str) or len(last_name.strip()) == 0:
-            raise InvalidNameError(last_name)
+            e = InvalidNameError(last_name).__str__()
+            self.loger.error(msg=e)
+            raise InvalidNameError(e)
         if not isinstance(first_name, str) or len(first_name.strip()) == 0:
-            raise InvalidNameError(first_name)
+            e = InvalidNameError(first_name).__str__()
+            self.loger.error(msg=e)
+            raise InvalidNameError(e)
         if not isinstance(patronymic, str) or len(patronymic.strip()) == 0:
-            raise InvalidNameError(patronymic)
+            e = InvalidNameError(patronymic).__str__()
+            self.loger.error(msg=e)
+            raise InvalidNameError(e)
         if not isinstance(age, int) or age <= 0:
-            raise InvalidAgeError(age)
+            e = InvalidAgeError(age).__str__()
+            self.loger.error(msg=e)
+            raise InvalidAgeError(e)
 
         self.last_name = last_name.title()
         self.first_name = first_name.title()
@@ -82,6 +104,8 @@ class Employee(Person):
     ):
         super().__init__(last_name, first_name, patronymic, age)
         if not isinstance(id, int) or id < 100_000 or id > 999_999:
+            e = InvalidIdError(id).__str__()
+            self.loger.error(msg=e)
             raise InvalidIdError(id)
         self.id = id
         self.ocupation = ocupation

@@ -1,3 +1,6 @@
+import logging
+
+
 class Rectangle:
     """
     >>> r1 = Rectangle(5)
@@ -21,7 +24,7 @@ class Rectangle:
     >>> r2.area()
     12
     >>> r3 = r1 + r2
-    >>> r3.width 
+    >>> r3.width
     8
     >>> r3.height
     9.0
@@ -49,17 +52,30 @@ class Rectangle:
     - __repr__(): возвращает строковое представление прямоугольника, которое может быть использовано для создания нового объекта
     """
 
+    loger = logging.getLogger(__name__)
+    my_format = "{levelname:<2} - {asctime:<2} - {msg} -"
+    logging.basicConfig(
+        filename="D://GBru//Учеба//Enter_python//Code//PythonLessons//2E_HomeWork15//LOG.log",
+        filemode="a",
+        encoding="UTF-8",
+        level="INFO",
+        style="{",
+        format=my_format,
+    )
+
     def __init__(self, width, height=None):
         if width <= 0:
-            raise NegativeValueError(f"Ширина должна быть положительной, а не {width}")
+            e = f"Ширина должна быть положительной, а не {width}"
+            self.loger.error(msg=e)
+            raise NegativeValueError(e)
         self._width = width
         if height is None:
             self._height = width
         else:
             if height <= 0:
-                raise NegativeValueError(
-                    f"Высота должна быть положительной, а не {height}"
-                )
+                e = f"Высота должна быть положительной, а не {height}"
+                self.loger.error(msg=e)
+                raise NegativeValueError(e)
             self._height = height
 
     def perimeter(self):
@@ -173,9 +189,11 @@ class Rectangle:
     @width.setter
     def width(self, value):
         if value <= 0:
-            raise NegativeValueError(f"Ширина должна быть положительной, а не {value}")
+            e = f"Ширина должна быть положительной, а не {value}"
+            self.loger.error(msg=e)
+            raise NegativeValueError(e)
         self._width = value
-    
+
     @property
     def height(self):
         return self._height
@@ -183,7 +201,9 @@ class Rectangle:
     @height.setter
     def height(self, value):
         if value <= 0:
-            raise NegativeValueError(f"Высота должна быть положительной, а не {value}")
+            e = f"Высота должна быть положительной, а не {value}"
+            self.loger.error(msg=e)
+            raise NegativeValueError(e)
         self._height = value
 
 
