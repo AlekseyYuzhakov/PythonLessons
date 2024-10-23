@@ -32,10 +32,10 @@ def add_to_file(list_some):
 
 
 def delete_number(some_list):
-    ask_for_serch = input("Укажите Имя, Фамилию, или № телефона для поиска ")
+    ask_for_search = input("Укажите Имя, Фамилию, или № телефона для поиска ")
     pos = 0
     for elem in some_list:
-        if ask_for_serch in elem:
+        if ask_for_search in elem:
             print(f"{elem.replace(';',' ')} Удалить запись? ")
             if str(input("Yes or No ")).lower in ["y", "yes", "yep", "ye"]:
                 some_list.pop(pos)
@@ -57,7 +57,7 @@ def main(phone_list):
     while True:
         print()
         print(
-            "Нажмите 1 если хотите посмотреть справочник\nНажмите 2 если хотете внести запись\nНажмите 3 если хотете удалить запись\nНажмите 0 что бы выйти из меню\n"
+            "Нажмите 1 если хотите посмотреть справочник\nНажмите 2 если хотите внести запись\nНажмите 3 если хотите удалить запись\nНажмите 0 что бы выйти из меню\n"
         )
         task_number = int(input())
         os.system("cls")
@@ -80,7 +80,7 @@ if __name__ == "__main__":
 # import csv
 
 
-# def readfile(filename):
+# def read_file(filename):
 #     read_data = [i.strip().split(';') for i in open(filename, 'r', encoding='utf-8')]
 #     # read_data = []
 #     # with open('tel.txt', 'r', encoding='utf-8') as file:
@@ -93,7 +93,7 @@ if __name__ == "__main__":
 #     print('===============================')
 #     print('Выберите одно из действий:')
 #     print('1 - вывести справочник на экран')
-#     print('2 - произвести экпорт данных')
+#     print('2 - произвести экспорт данных')
 #     print('3 - поиск абонентов')
 #     print('4 - удаление из справочника по id')
 #     print('5 - добавление записи в справочник')
@@ -145,8 +145,8 @@ if __name__ == "__main__":
 # def save(data):
 #     with open('tel.txt', 'w', encoding='utf-8') as file:
 #         for elem in data:
-#             stroka = ';'.join(elem) + '\n'
-#             file.write(stroka)
+#             line = ';'.join(elem) + '\n'
+#             file.write(line)
 
 
 # def main():
@@ -160,7 +160,7 @@ if __name__ == "__main__":
 #         4: delete,
 #         5: add_record
 #         }
-#     data = readfile('tel.txt')
+#     data = read_file('tel.txt')
 #     while my_choice != 0:
 #         menu()
 #         my_choice = int(input('Введите команду: '))
